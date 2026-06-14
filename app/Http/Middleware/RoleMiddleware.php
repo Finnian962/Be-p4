@@ -4,8 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Response;
 
 class RoleMiddleware
 {
@@ -18,16 +18,16 @@ class RoleMiddleware
     {
         $user = Auth::user();
 
-        if (!$user) {
+        if (! $user) {
             return redirect()->route('login');
         }
 
         $userRole = strtolower($user->rolename ?? '');
 
-        if (!in_array($userRole, array_map('strtolower', $roles))) {
+        if (! in_array($userRole, array_map('strtolower', $roles))) {
             abort(403, 'Onvoldoende rechten');
         }
 
-        return $next($request);    
+        return $next($request);
     }
 }

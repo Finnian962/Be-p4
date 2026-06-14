@@ -13,7 +13,7 @@ class AssistentController extends Controller
     {
         // View
         return view('Assistent.index', [
-            'title' => 'Assistent Home'
+            'title' => 'Assistent Home',
         ]);
     }
 

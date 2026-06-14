@@ -13,10 +13,10 @@ class TandartsController extends Controller
     {
         // View
         return view('Tandarts.index', [
-    'title' => 'Tandarts Home'
-    ]);
+            'title' => 'Tandarts Home',
+        ]);
     }
-    
+
     /**
      * Show the form for creating a new resource.
      */
