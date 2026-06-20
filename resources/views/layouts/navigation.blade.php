@@ -115,6 +115,41 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+
+            @if (Auth::check() && in_array(Auth::user()->rolename, ['patient', 'praktijkmanagement']))
+                <x-responsive-nav-link :href="route('patient.index')"
+                    :active="request()->routeIs('patient.index')">
+                    {{ __('Patient') }}
+                </x-responsive-nav-link>
+            @endif
+
+            @if (Auth::check() && in_array(Auth::user()->rolename, ['tandarts', 'praktijkmanagement']))
+                <x-responsive-nav-link :href="route('tandarts.index')"
+                    :active="request()->routeIs('tandarts.index')">
+                    {{ __('Tandarts') }}
+                </x-responsive-nav-link>
+            @endif
+
+            @if (Auth::check() && Auth::user()->rolename === 'praktijkmanagement')
+                <x-responsive-nav-link :href="route('praktijkmanagement.userroles')"
+                    :active="request()->routeIs('praktijkmanagement.userroles')">
+                    {{ __('Gebruikersrollen') }}
+                </x-responsive-nav-link>
+            @endif
+
+            @if (Auth::check() && in_array(Auth::user()->rolename, ['mondhygienist', 'praktijkmanagement']))
+                <x-responsive-nav-link :href="route('mondhygienist.index')"
+                    :active="request()->routeIs('mondhygienist.index')">
+                    {{ __('Mondhygienist') }}
+                </x-responsive-nav-link>
+            @endif
+
+            @if (Auth::check() && in_array(Auth::user()->rolename, ['assistent', 'praktijkmanagement']))
+                <x-responsive-nav-link :href="route('assistent.index')"
+                    :active="request()->routeIs('assistent.index')">
+                    {{ __('Assistent') }}
+                </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->

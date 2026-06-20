@@ -36,10 +36,8 @@ class AuthenticatedSessionController extends Controller
             'mondhygienist' => route('mondhygienist.index'),
             'assistent' => route('assistent.index'),
             'praktijkmanagement' => route('praktijkmanagement.index'),
-            default => route('welcome'),
+            default => route('dashboard'),
         });
-
-        return redirect()->intended(route('dashboard', absolute: false));
     }
 
     /**

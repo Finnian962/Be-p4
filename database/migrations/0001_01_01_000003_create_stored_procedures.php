@@ -7,6 +7,10 @@ return new class extends Migration
 {
     public function up(): void
     {
+        if (DB::getDriverName() === 'sqlite') {
+            return;
+        }
+
         DB::unprepared('DROP PROCEDURE IF EXISTS SP_GetAllUsers');
         DB::unprepared('
             CREATE PROCEDURE SP_GetAllUsers(
@@ -65,6 +69,8 @@ return new class extends Migration
                        USRS.email = p_Email,
                        USRS.rolename = p_Rolename
                 WHERE  USRS.id = p_Id;
+
+                SELECT ROW_COUNT() AS affected;
             END
         ');
 
@@ -84,6 +90,10 @@ return new class extends Migration
 
     public function down(): void
     {
+        if (DB::getDriverName() === 'sqlite') {
+            return;
+        }
+
         DB::unprepared('DROP PROCEDURE IF EXISTS SP_GetAllUsers');
         DB::unprepared('DROP PROCEDURE IF EXISTS SP_GetUserById');
         DB::unprepared('DROP PROCEDURE IF EXISTS SP_GetAllUserroles');
